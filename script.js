@@ -386,7 +386,7 @@ function setupEventListeners() {
   })
 
   // Botones
-  updatePricesBtn.addEventListener("click", updateAllPrices)
+  updatePricesBtn.addEventListener("click", obtenerPrecios);
   exportCsvBtn.addEventListener("click", exportToCSV)
   clearHistoryBtn.addEventListener("click", clearTransactionHistory)
 
@@ -542,26 +542,6 @@ async function updateStockPrices(stockHoldings) {
 
   // Simular delay de API
   await new Promise((resolve) => setTimeout(resolve, 1000))
-}
-
-async function updateAllPrices() {
-    try {
-        const holdings = getHoldings();
-
-        const cryptoHoldings = holdings.filter(h => isCrypto(h.symbol));
-        const stockHoldings = holdings.filter(h => !isCrypto(h.symbol));
-
-        await updateCryptoPrices(cryptoHoldings);
-        await updateStockPrices(stockHoldings);
-
-        saveHoldings(holdings);
-        updateUI();
-
-        showToast("✅ Precios actualizados correctamente");
-    } catch (error) {
-       // console.error("Error updating prices:", error);
-        //showToast("❌ Error al actualizar precios");
-    }
 }
 
 // ===== VERIFICAR SI ES CRIPTO =====
