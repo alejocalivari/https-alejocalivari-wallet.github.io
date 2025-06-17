@@ -486,12 +486,13 @@ function addTransaction(symbol, type, shares, price, total) {
 }
 
 // ===== ACTUALIZAR PRECIOS VIA API =====
-ateAllPrices() {
+async function updateAllPrices() {
+  console.log("🔄 Updating all prices..." )
   if (holdings.length === 0) {
     showToast("⚠️ No holdings to update", "warning")
     return
   }
-
+  // Obtener botón de actualización   
   // Mostrar loading
   updatePricesBtn.innerHTML = '<span class="spinner"></span> Updating...'
   updatePricesBtn.disabled = true
