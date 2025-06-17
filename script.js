@@ -581,7 +581,7 @@ async function updateAllPrices() {
         showToast("✅ Precios actualizados correctamente");
     } catch (error) {
         console.error("Error updating prices:", error);
-        showToast("❌ Error al actualizar precios");
+        //showToast("❌ Error al actualizar precios");
     }
 }
 
