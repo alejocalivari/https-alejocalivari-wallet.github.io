@@ -977,10 +977,12 @@ function updateAssetsTable() {
 function toggleEmptyState() {
   if (holdings.length === 0) {
     emptyState.style.display = "block"
-    document.getElementById("assets-table").style.display = "none"
+    document.getElementById("holdings-tbody")
+.style.display = "none"
   } else {
     emptyState.style.display = "none"
-    document.getElementById("assets-table").style.display = "table"
+    document.getElementById("holdings-tbody")
+.style.display = "table"
   }
 }
 
