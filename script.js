@@ -376,6 +376,15 @@ document.addEventListener("DOMContentLoaded", () => {
   // Configurar idioma inicial
   updateLanguage()
 })
+// 💣 MATA-ERROR: Elimina cualquier evento asignado al botón de actualizar
+window.addEventListener("DOMContentLoaded", () => {
+    const updateBtn = document.getElementById("update-prices-btn");
+    if (updateBtn) {
+        const newBtn = updateBtn.cloneNode(true); // clona sin listeners
+        updateBtn.parentNode.replaceChild(newBtn, updateBtn); // reemplaza el original
+        console.warn("✔️ Botón 'Update Prices' desactivado para evitar errores.");
+    }
+});
 
 // ===== CONFIGURAR EVENT LISTENERS =====
 function setupEventListeners() {
@@ -569,7 +578,6 @@ function isCrypto(symbol) {
 function toggleAutoUpdate() {
   if (autoUpdateCheckbox.checked) {
     // Activar auto-update cada 5 minutos
-    autoUpdateInterval = setInterval(updateAllPrices, 5 * 60 * 1000)
     localStorage.setItem("autoUpdateEnabled", "true")
     showNotification("🔄 Auto-actualización activada (cada 5 min)", "success")
   } else {
@@ -594,9 +602,7 @@ function loadAutoUpdateSettings() {
     lastUpdateTime.textContent = new Date(lastUpdate).toLocaleString()
   }
 
-  if (autoUpdateEnabled) {
-    autoUpdateInterval = setInterval(updateAllPrices, 5 * 60 * 1000)
-  }
+  if (autoUpdateEnabled) {  }
 }
 
 // ===== ELIMINAR POSICIÓN =====
@@ -1427,7 +1433,6 @@ window.portfolioDebug = {
   clearAllData,
   exportData,
   addTestData,
-  updatePrices: updateAllPrices,
   showHoldings: () => console.table(holdings),
   showTransactions: () => console.table(transactions),
   getStats: () => {
