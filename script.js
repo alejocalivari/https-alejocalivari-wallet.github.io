@@ -518,8 +518,8 @@ async function updateAllPrices() {
 
     showToast("✅ Prices updated successfully", "success")
   } catch (error) {
-    console.error("Error updating prices:", error)
-    showToast("❌ Error updating prices", "error")
+    //console.error("Error updating prices:", error)
+    //showToast("❌ Error updating prices", "error")
   } finally {
     // Restaurar botón
     updatePricesBtn.innerHTML = '<i class="fas fa-sync-alt"></i><span>Update Prices</span>'
