@@ -376,6 +376,11 @@ document.addEventListener("DOMContentLoaded", () => {
   // Configurar idioma inicial
   updateLanguage()
 })
+
+window.addEventListener("DOMContentLoaded", () => {
+    const toastContainer = document.getElementById("toast-container");
+    if (toastContainer) toastContainer.innerHTML = "";
+});
 // 💣 MATA-ERROR: Elimina cualquier evento asignado al botón de actualizar
 window.addEventListener("DOMContentLoaded", () => {
     const updateBtn = document.getElementById("update-prices-btn");
