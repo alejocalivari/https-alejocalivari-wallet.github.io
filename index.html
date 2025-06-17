@@ -128,6 +128,48 @@
             </section>
 
             <!-- Holdings Table -->
+             <section class="holdings-section">
+    <div class="section-header">
+        <h2 data-translate="yourHoldings">Your Holdings</h2>
+        <div class="section-actions">
+            <button id="export-csv-btn" class="btn-secondary">
+                <i class="fas fa-download"></i>
+                <span data-translate="exportCsv">Export CSV</span>
+            </button>
+        </div>
+    </div>
+
+    <div class="holdings-container">
+        <div class="holdings-table-wrapper">
+            <table class="holdings-table" id="holdings-table">
+                <thead>
+                    <tr>
+                        <th data-translate="asset">Asset</th>
+                        <th data-translate="shares">Shares</th>
+                        <th data-translate="avgCost">Avg. Cost</th>
+                        <th data-translate="currentPrice">Current Price</th>
+                        <th data-translate="marketValue">Market Value</th>
+                        <th data-translate="gainLoss">Gain/Loss</th>
+                        <th data-translate="returnPercent">Return %</th>
+                        <th data-translate="actions">Actions</th>
+                    </tr>
+                </thead>
+                <tbody id="holdings-tbody">
+                    <!-- Las filas dinámicas se insertan por JS -->
+                </tbody>
+            </table>
+
+            <div id="empty-holdings" class="empty-state">
+                <div class="empty-icon">
+                    <i class="fas fa-chart-pie"></i>
+                </div>
+                <h3 data-translate="noInvestmentsYet">No investments yet</h3>
+                <p data-translate="startBuildingPortfolio">Start building your portfolio by adding your first investment above</p>
+            </div>
+        </div>
+    </div>
+</section>
+
             <!-- (todo igual como lo tenías) -->
             <!-- Monthly Performance -->
             <!-- (todo igual como lo tenías) -->
