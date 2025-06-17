@@ -510,7 +510,7 @@ async function obtenerPrecios() {
     document.getElementById("toast-container").innerHTML = "";
 
   } catch (err) {
-    console.error("Error al traer precios:", err);
+    //console.error("Error al traer precios:", err);
     // showToast("❌ Error updating prices", "error"); // comentado o eliminado
   }
 }
@@ -916,11 +916,12 @@ function updateContributionsSection() {
 
 // ===== ACTUALIZAR TABLA DE ACTIVOS CON GANANCIA/PÉRDIDA =====
 function updateAssetsTable() {
-    const assetsTableBody = document.getElementById("holdings-tbody");
-    if (!assetsTableBody) {
-        console.warn("No se encontró el elemento #holdings-tbody");
-        return;
-    }
+  return; // ⚠️ Desactivado temporalmente
+  // const assetsTableBody = document.getElementById("holdings-tbody");
+  // if (!assetsTableBody) return;
+  // ...
+}
+
 // Limpiar tabla
   assetsTableBody.innerHTML = ""
 
@@ -967,7 +968,7 @@ function updateAssetsTable() {
 
     assetsTableBody.appendChild(row)
   })
-}
+
 
 // ===== MOSTRAR/OCULTAR ESTADO VACÍO =====
 function toggleEmptyState() {
