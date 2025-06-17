@@ -946,9 +946,9 @@ function updateContributionsSection() {
 
 // ===== ACTUALIZAR TABLA DE ACTIVOS CON GANANCIA/PÉRDIDA =====
 function updateAssetsTable() {
-  // Limpiar tabla
   const assetsTableBody = document.getElementById("holdings-tbody");
 if (!assetsTableBody) return;
+// Limpiar tabla
   assetsTableBody.innerHTML = ""
 
   // Ordenar activos por valor total (mayor a menor)
