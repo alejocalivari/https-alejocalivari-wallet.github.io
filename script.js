@@ -476,7 +476,7 @@ function addTransaction(symbol, type, shares, price, total) {
 
   transactions.unshift(transaction) // Agregar al inicio
 
-  // Mantener solo las últimas 50 transacciones
+  // Mantener solasync function updo las últimas 50 transacciones
   if (transactions.length > 50) {
     transactions = transactions.slice(0, 50)
   }
@@ -486,7 +486,7 @@ function addTransaction(symbol, type, shares, price, total) {
 }
 
 // ===== ACTUALIZAR PRECIOS VIA API =====
-async function updateAllPrices() {
+ateAllPrices() {
   if (holdings.length === 0) {
     showToast("⚠️ No holdings to update", "warning")
     return
@@ -562,6 +562,26 @@ async function updateStockPrices(stockHoldings) {
 
   // Simular delay de API
   await new Promise((resolve) => setTimeout(resolve, 1000))
+}
+
+async function updateAllPrices() {
+    try {
+        const holdings = getHoldings();
+
+        const cryptoHoldings = holdings.filter(h => isCrypto(h.symbol));
+        const stockHoldings = holdings.filter(h => !isCrypto(h.symbol));
+
+        await updateCryptoPrices(cryptoHoldings);
+        await updateStockPrices(stockHoldings);
+
+        saveHoldings(holdings);
+        updateUI();
+
+        showToast("✅ Precios actualizados correctamente");
+    } catch (error) {
+        console.error("Error updating prices:", error);
+        showToast("❌ Error al actualizar precios");
+    }
 }
 
 // ===== VERIFICAR SI ES CRIPTO =====
