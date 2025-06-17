@@ -484,49 +484,28 @@ function addTransaction(symbol, type, shares, price, total) {
   saveTransactionsToStorage()
   updateTransactionsList()
 }
-
-// ===== ACTUALIZAR PRECIOS VIA API =====
-async function updateAllPrices() {
-  console.log("🔄 Updating all prices..." )
-  if (holdings.length === 0) {
-    showToast("⚠️ No holdings to update", "warning")
-    return
-  }
-  // Obtener botón de actualización   
-  // Mostrar loading
-  updatePricesBtn.innerHTML = '<span class="spinner"></span> Updating...'
-  updatePricesBtn.disabled = true
-
+async function obtenerPrecios() {
   try {
-    // Separar criptos de acciones
-    const cryptoHoldings = holdings.filter((holding) => isCrypto(holding.symbol))
-    const stockHoldings = holdings.filter((holding) => !isCrypto(holding.symbol))
+    const res = await fetch("https://wallet-backend-production-90f2.up.railway.app/api/prices");
+    const data = await res.json();
+    document.getElementById("btc-price").textContent = `$${data.bitcoin.usd}`;
+    document.getElementById("eth-price").textContent = `$${data.ethereum.usd}`;
+    document.getElementById("ltc-price").textContent = `$${data.litecoin.usd}`;
 
-    // Actualizar criptos
-    if (cryptoHoldings.length > 0) {
-      await updateCryptoPrices(cryptoHoldings)
-    }
+    // 🔥 borra el cartel de error si sigue visible
+    document.getElementById("toast-container").innerHTML = "";
 
-    // Actualizar acciones (simulado)
-    if (stockHoldings.length > 0) {
-      await updateStockPrices(stockHoldings)
-    }
-
-    // Guardar cambios
-    saveHoldingsToStorage()
-    updateUI()
-
-    showToast("✅ Prices updated successfully", "success")
-  } catch (error) {
-    //console.error("Error updating prices:", error)
-    //showToast("❌ Error updating prices", "error")
-  } finally {
-    // Restaurar botón
-    updatePricesBtn.innerHTML = '<i class="fas fa-sync-alt"></i><span>Update Prices</span>'
-    updatePricesBtn.disabled = false
+  } catch (err) {
+    console.error("Error al traer precios:", err);
+    // showToast("❌ Error updating prices", "error"); // comentado o eliminado
   }
 }
 
+
+// ===== ACTUALIZAR PRECIOS VIA API =====
+
+  // Obtener botón de actualización   
+  // Mostrar loading
 // ===== ACTUALIZAR PRECIOS DE CRIPTOS =====
 async function updateCryptoPrices(cryptoHoldings) {
   const symbols = cryptoHoldings.map((holding) => symbolMapping[holding.symbol]).filter(Boolean)
