@@ -127,8 +127,8 @@
                 </form>
             </section>
 
-            <!-- Holdings Table -->
-             <section class="holdings-section">
+            
+            <section class="holdings-section">
     <div class="section-header">
         <h2 data-translate="yourHoldings">Your Holdings</h2>
         <div class="section-actions">
@@ -155,7 +155,7 @@
                     </tr>
                 </thead>
                 <tbody id="holdings-tbody">
-                    <!-- Las filas dinámicas se insertan por JS -->
+                
                 </tbody>
             </table>
 
@@ -170,14 +170,6 @@
     </div>
 </section>
 
-            <!-- (todo igual como lo tenías) -->
-            <!-- Monthly Performance -->
-            <!-- (todo igual como lo tenías) -->
-            <!-- Transaction History -->
-            <!-- (todo igual como lo tenías) -->
-            <!-- Projections -->
-            <!-- (todo igual como lo tenías) -->
-
         </div>
     </main>
 
@@ -186,19 +178,18 @@
 
     <!-- Script para traer precios reales -->
     <script>
-      async function obtenerPrecios() {
+    async function obtenerPrecios() {
         try {
-          const res = await fetch("https://wallet-backend-production-90f2.up.railway.app/api/prices");
-          const data = await res.json();
-          document.getElementById("btc-price").textContent = `$${data.bitcoin.usd}`;
-          document.getElementById("eth-price").textContent = `$${data.ethereum.usd}`;
-          document.getElementById("ltc-price").textContent = `$${data.litecoin.usd}`;
-        } catch (err) {
-          console.error("Error al traer precios:", err);
+        const res = await fetch("https://wallet-backend-production-90f2.up.railway.app/api/prices");
+        const data = await res.json();
+        document.getElementById("btc-price").textContent = `$${data.bitcoin.usd}`;
+        document.getElementById("eth-price").textContent = `$${data.ethereum.usd}`;
+        document.getElementById("ltc-price").textContent = `$${data.litecoin.usd}`;
+        } catch (err) {          console.error("Error al traer precios:", err);
         }
-      }
+    }
 
-      obtenerPrecios();
+    obtenerPrecios();
     </script>
 </body>
 </html>

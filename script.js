@@ -946,8 +946,11 @@ function updateContributionsSection() {
 
 // ===== ACTUALIZAR TABLA DE ACTIVOS CON GANANCIA/PÉRDIDA =====
 function updateAssetsTable() {
-  const assetsTableBody = document.getElementById("holdings-tbody");
-if (!assetsTableBody) return;
+    const assetsTableBody = document.getElementById("holdings-tbody");
+    if (!assetsTableBody) {
+        console.warn("No se encontró el elemento #holdings-tbody");
+        return;
+    }
 // Limpiar tabla
   assetsTableBody.innerHTML = ""
 
